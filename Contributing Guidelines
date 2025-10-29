@@ -1,0 +1,10 @@
+Contributing Guidelines
+
+Thank you for your interest in contributing to this project!  
+We welcome all types of contributions, including bug fixes, new features, and documentation improvements.
+
+## How to Contribute
+1. **Fork** the repository.
+2. **Create a new branch** for your feature or fix.
+   ```bash
+   git checkout -b feature-name
