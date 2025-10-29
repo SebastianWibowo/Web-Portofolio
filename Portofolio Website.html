@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sebastian Wibowo — Portfolio</title>
+    <style>
+        :root {
+            --bg: #fbfbfd;
+            --card: #ffffff;
+            --muted: #6b7280;
+            --accent: #0b5cff;
+            --accent-2: #0b7cff;
+            --glass: rgba(11, 92, 255, 0.06);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: #0f172a;
+            line-height: 1.5
+        }
+
+        /* Top header */
+        header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 18px 28px;
+            border-bottom: 1px solid #e6e9ef;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), transparent)
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .home-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border-radius: 8px;
+            background: var(--glass);
+            cursor: pointer
+        }
+
+        .home-icon svg {
+            width: 22px;
+            height: 22px
+        }
+
+        #styled-name {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--accent)
+        }
+
+        /* Navigation */
+        nav {
+            margin-left: auto
+        }
+
+        .nav-list {
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        .nav-item {
+            padding: 8px 10px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #0f172a;
+            font-weight: 500
+        }
+
+        .nav-item:hover {
+            font-weight: 700;
+            text-decoration: underline;
+            cursor: pointer
+        }
+
+        /* Layout */
+        .container {
+            max-width: 980px;
+            margin: 28px auto;
+            padding: 0 16px
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 24px
+        }
+
+        /* Left column */
+        .card {
+            background: var(--card);
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(16, 24, 40, 0.05)
+        }
+
+        .profile {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 12px
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 999px;
+            overflow: hidden;
+            display: inline-grid;
+            place-items: center;
+            background: linear-gradient(135deg, var(--accent), #4aa3ff);
+            box-shadow: 0 8px 20px rgba(11, 92, 255, 0.12)
+        }
+
+        .avatar svg {
+            width: 78px;
+            height: 78px;
+            filter: drop-shadow(0 6px 18px rgba(11, 92, 255, 0.12))
+        }
+
+        .name {
+            font-weight: 700;
+            font-size: 18px
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px
+        }
+
+        /* Skills */
+        .skills {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            padding-top: 12px;
+            gap: 10px
+        }
+
+        .skill {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            background: linear-gradient(180deg, #ffffff, #fbfdff);
+            border: 1px solid #eef2ff
+        }
+
+        .skill svg {
+            width: 28px;
+            height: 28px
+        }
+
+        /* Right column */
+        h2 {
+            margin: 0 0 12px 0
+        }
+
+        .projects .project {
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #eef2ff;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #fff, #fbfdff)
+        }
+
+        .project h3 {
+            margin: 0 0 8px 0
+        }
+
+        .project p {
+            margin: 0;
+            color: var(--muted)
+        }
+
+        /* Recommendations */
+        .recommend-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .rec {
+            padding: 12px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #f1f5f9
+        }
+
+        .rec small {
+            color: var(--muted)
+        }
+
+        /* Recommendation form */
+        .rec-form {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .rec-form input,
+        .rec-form textarea {
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #e6edf8
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            cursor: pointer
+        }
+
+        /* Modal */
+        .modal {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 23, 0.45)
+        }
+
+        .modal .panel {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(2, 6, 23, 0.18);
+            min-width: 320px;
+            text-align: center
+        }
+
+        /* small screens */
+        @media (max-width:800px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-list {
+                gap: 10px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="brand">
+            <div id="home-icon" class="home-icon" title="Home (icon)">
+                <!-- home svg -->
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M3 10.5L12 4l9 6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                    <path d="M5 21V11h14v10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </div>
+            <div id="styled-name">Sebastian Wibowo</div>
+        </div>
+
+        <nav aria-label="Main navigation">
+            <div class="nav-list" id="nav-bar">
+                <a class="nav-item" data-target="about">About</a>
+                <a class="nav-item" data-target="projects">Project details</a>
+                <a class="nav-item" data-target="skills">Skills</a>
+                <a class="nav-item" data-target="recommendations">Recommendations</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="grid">
+            <aside class="card">
+                <div class="profile" id="about-me">
+                    <div class="avatar" aria-hidden="true">
+                        <!-- simple avatar SVG -->
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3.2" fill="white" />
+                            <path d="M4 20c0-3.3 2.7-6 6-6h4c3.3 0 6 2.7 6 6" fill="white" />
+                        </svg>
+                    </div>
+                    <div class="name">Sebastian Wibowo</div>
+                    <div class="muted">Active 5th-semester student of the Informatics Engineering Program, Faculty of
+                        Information Technology, Tarumanagara University. Possesses strong communication skills, able to
+                        work effectively in a team, and accustomed to working under pressure. Quick to learn new things
+                        and highly motivated to grow professionally in the field of information technology.</div>
+                </div>
+
+                <div style="margin-top:18px">
+                    <h3 style="margin:0 0 8px 0">Skills</h3>
+                    <div class="skills" id="skills">
+                        <div class="skill"><svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="2" fill="#e34f26"></rect>
+                            </svg>
+                            <div>HTML</div>
+                        </div>
+                        <div class="skill"><svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="2" fill="#1572B6"></rect>
+                            </svg>
+                            <div>CSS</div>
+                        </div>
+                        <div class="skill"><svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" fill="#f7df1e"></circle>
+                            </svg>
+                            <div>JavaScript</div>
+                        </div>
+                        <div class="skill"><svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="2" fill="#026e00"></rect>
+                            </svg>
+                            <div>Node.js</div>
+                        </div>
+                        <div class="skill"><svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="3" width="18" height="18" rx="2" fill="#02569B"></rect>
+                            </svg>
+                            <div>Flutter</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <section>
+                <div class="card projects" id="projects">
+                    <h2>Projects</h2>
+
+                    <div class="project">
+                        <h3>Mobile Application – Fintar (Digital Wallet App)</h3>
+                        <p>Developed a digital wallet mobile application using Flutter and Dart. Integrated Firebase for
+                            authentication and real-time database to manage balances and transactions.</p>
+                    </div>
+
+                    <div class="project">
+                        <h3>Data Mining – Heart Disease Risk Analysis Using PCA and Clustering (2025)</h3>
+                        <p>Analyzed clinical datasets using PCA & K-Medoids clustering in MATLAB to detect outliers and
+                            identify health patterns; results documented in a scientific report.</p>
+                    </div>
+
+                    <div class="project">
+                        <h3>Front-End Web Development – Dunia Rasa</h3>
+                        <p>Built a responsive culinary & healthy lifestyle website using HTML, CSS, JS, MongoDB, and
+                            Node.js. Features include posting recipes, favorites, comments, and search.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top:18px" id="recommendations">
+                    <h2>Recommendations</h2>
+
+                    <ul class="recommend-list" id="recommendation-list">
+                        <li class="rec"><strong>Dr. Lina Prasetya</strong><br><small>"Sebastian demonstrates excellent
+                                analytical skills and a strong work ethic. A reliable team member."</small></li>
+                        <li class="rec"><strong>Dillon Majesson</strong><br><small>"Great collaborator on the Dunia Rasa
+                                project — brings creative UI ideas and consistent follow-through."</small></li>
+                        <li class="rec"><strong>Junardi Chailesia</strong><br><small>"Fast learner and quick to adopt
+                                new technologies. Highly recommended for practical projects."</small></li>
+                    </ul>
+
+                    <form id="rec-form" class="rec-form" onsubmit="return false;">
+                        <input id="rec-name" placeholder="Your name" required />
+                        <textarea id="rec-text" rows="3" placeholder="Write a short recommendation..."
+                            required></textarea>
+                        <div style="display:flex;gap:8px;align-items:center">
+                            <button id="rec-submit" class="btn">Submit recommendation</button>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- modal -->
+    <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="panel">
+            <h3>Thank you for leaving a recommendation!</h3>
+            <p style="color:var(--muted);margin-top:8px">Your recommendation has been submitted successfully.</p>
+            <div style="margin-top:12px"><button id="close-modal" class="btn"
+                    style="background:var(--accent-2)">Close</button></div>
+        </div>
+    </div>
+
+    <script>
+        // simple single-file interactions
+        document.querySelectorAll('.nav-item').forEach(el => {
+            el.addEventListener('click', () => {
+                const target = el.dataset.target;
+                const node = document.getElementById(target);
+                if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // recommendation submission: append new recommendation and show popup modal
+        const recForm = document.getElementById('rec-form');
+        const recList = document.getElementById('recommendation-list');
+        const modal = document.getElementById('modal');
+        const closeModal = document.getElementById('close-modal');
+
+        function showModal() { modal.style.display = 'flex'; modal.setAttribute('aria-hidden', 'false'); }
+        function hideModal() { modal.style.display = 'none'; modal.setAttribute('aria-hidden', 'true'); }
+
+        recForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('rec-name').value.trim();
+            const text = document.getElementById('rec-text').value.trim();
+            if (!name || !text) return;
+            // create new rec
+            const li = document.createElement('li'); li.className = 'rec';
+            li.innerHTML = `<strong>${escapeHtml(name)}</strong><br><small>"${escapeHtml(text)}"</small>`;
+            recList.appendChild(li);
+            // clear form
+            recForm.reset();
+            // show confirmation popup
+            showModal();
+        });
+
+        closeModal.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) hideModal(); });
+
+        function escapeHtml(unsafe) { return unsafe.replace(/[&<>\"]/g, function (m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\': '\\\\', '"': '&quot;' }[m]; }); }
+
+        // home icon click scroll to top
+        document.getElementById('home-icon').addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    </script>
+</body>
+
+</html>
